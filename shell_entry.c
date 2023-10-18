@@ -6,7 +6,7 @@
  * Return: sth
  */
 
-int creates_object()
+int creates_object(void)
 {
 	int *myobject = NULL;
 
