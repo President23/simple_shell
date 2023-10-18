@@ -13,6 +13,7 @@ int words_array(char *input)
 {
 	char *ar[MAX_ARGS];
 	int c = 0;
+	int a;
 
 	char *token = strtok(input, " ");
 
@@ -29,7 +30,7 @@ int words_array(char *input)
 		token = strtok(NULL, " ");
 	}
 
-	for (int a = 0; a < c; a++)
+	for (a = 0; a < c; a++)
 	{
 		printf("ar %d: %s\n", a, ar[a]);
 	}

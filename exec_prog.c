@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-#include <stddef.h>
 
 /**
  * exec_prog - executes program
@@ -14,10 +13,11 @@
 int exec_prog(void)
 {
 	int five = 5;
+	int a;
 
-	for (int a = 0; a < five; a++)
+	for (a = 0; a < five; a++)
 	{
-		pid_t f  = fake();
+		pid_t f  = fork();
 
 		if (f == -1)
 		{
@@ -37,7 +37,7 @@ int exec_prog(void)
 			int status;
 
 			wait(&status);
-			printf("child process %d exited with ststus %d\n", a, WEXITSTATU);
+			printf("child process %d exited with status \n", a);
 		}
 	}
 

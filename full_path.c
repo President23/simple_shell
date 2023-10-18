@@ -16,31 +16,30 @@
 int full_path(void)
 {
 	char in[MAX_COMMAND_LENGTH];
-	char args[95];
+	char *args[95];
+	int ar = 0;
+	char *token = strtok(in, " \n");
 
 	while (1)
 	{
 		printf("#cisfun$ ");
 
-		if (fget(in, MAX_COMMAND_LENGTH, stdin) == NULL)
+		if (fgets(in, MAX_COMMAND_LENGTH, stdin) == NULL)
 		{
 			break;
 		}
 
-		int c = 0;
-		char *token = strtok(in, " \n");
-
 		while (token != NULL)
 		{
-			args[c] = token;
-			c++;
+			args[ar] = token;
+			ar++;
 
 			token = strtok(NULL, " \n");
 		}
 
-		args[c] = NULL;
+		args[ar] = NULL;
 
-		if (c > 0)
+		if (ar > 0)
 		{
 			pid_t pid = fork();
 
