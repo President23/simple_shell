@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-
+#include "shell.h"
 /**
  * creates_object - my checking
  * Return: sth
