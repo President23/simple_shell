@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "shell.h"
+#include <unistd.h>
 
 /**
- * pres_pro - pro to print my c
+ * main - main for shell check
  * Return: change
  */
 
-int pres_pro(void)
+int main(void)
 {
 	printf(" #cisfun$ ");
 

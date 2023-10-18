@@ -5,6 +5,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void pres_pro(void);
+int pres_pro(void);
 
 #endif
