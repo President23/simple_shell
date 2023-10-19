@@ -1,13 +1,11 @@
 #include "shell.h"
 
 /**
- * main - shell
- * Return: nu
+ * main - bring main
+ * Return: change
  */
 
 int main(void)
 {
-	printf(" $ \n");
-
 	return (0);
 }
