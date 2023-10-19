@@ -15,10 +15,11 @@
 
 int full_path(void)
 {
+
 	char in[MAX_COMMAND_LENGTH];
-	char *args[95];
+	char *args[MAX_COMMAND_LENGTH];
 	int ar = 0;
-	char *token = strtok(in, " \n");
+	char *token = strtok(in, " ");
 
 	while (1)
 	{
@@ -28,6 +29,9 @@ int full_path(void)
 		{
 			break;
 		}
+		
+		in[strlen(in) - 1] = '\0';;
+
 
 		while (token != NULL)
 		{
@@ -45,15 +49,18 @@ int full_path(void)
 
 			if (pid == -1)
 			{
-				perror("fake f");
+				perror("fork failed");
 				exit(1);
 			}
 			else if (pid == 0)
 			{
-				execv(args[0], args);
-				perror("execve failed");
-				exit(1);
+				if (execvp(args[0], args) == -1)
+				{
+					perror("execve failed");
+					exit(1);
+				}
 			}
+
 			else
 			{
 				int status;
@@ -65,4 +72,3 @@ int full_path(void)
 
 	return (0);
 }
-

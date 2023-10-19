@@ -1,6 +1,7 @@
 #include "shell.h"
 #include <string.h>
 #include <stdio.h>
+
 #define MAX_ARGS 10
 
 /**
@@ -24,7 +25,7 @@ int words_array(char *input)
 
 		if (c >= MAX_ARGS)
 		{
-			printf("many args\n");
+			printf("Too many args.\n");
 			return (0);
 		}
 		token = strtok(NULL, " ");
@@ -35,16 +36,5 @@ int words_array(char *input)
 		printf("ar %d: %s\n", a, ar[a]);
 	}
 
-	return (0);
-}
-/**
- * main - main
- * Return: change
- */
-int main(void)
-{
-	char input[] = "ls -l /tmp";
-
-	words_array(input);
 	return (0);
 }
