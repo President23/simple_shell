@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	printf(" $ \n");
+	printf(" #cisfun$ \n");
 
 	return (0);
 }
