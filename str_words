@@ -3,19 +3,19 @@
 /**
  * **strtow - split str
  * @str: the in
- * @d: the de
+ * @e: the de
  * Return: a point
  */
 
-char **strtow(char *str, char *d)
+char **strtow(char *str, char *e)
 {
 	int a, d, k, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
-	if (!d)
-		d = " ";
+	if (!e)
+		e = " ";
 	for (a = 0; str[a] != '\0'; a++)
 		if (!is_delim(str[a], e) && (is_delim(str[a + 1], e) || !str[a + 1]))
 			numwords++;
@@ -32,10 +32,10 @@ char **strtow(char *str, char *d)
 		k = 0;
 		while (!is_delim(str[a + k], e) && str[a + k])
 			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
-		if (!s[j])
+		s[d] = malloc((k + 1) * sizeof(char));
+		if (!s[d])
 		{
-			for (k = 0; k < j; k++)
+			for (k = 0; k < d; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
@@ -51,12 +51,12 @@ char **strtow(char *str, char *d)
 /**
  * **strtow2 - split
  * @str: the in
- * @d: the delimeter
+ * @e: the delimeter
  * Return: a poi
  */
-char **strtow2(char *str, char d)
+char **strtow2(char *str, char e)
 {
-	int a, d, k, m, numwords = 0;
+	int a, , k, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
@@ -77,18 +77,18 @@ char **strtow2(char *str, char d)
 		k = 0;
 		while (str[a + k] != e && str[a + k] && str[a + k] != e)
 			k++;
-		s[d] = malloc((k + 1) * sizeof(char));
-		if (!s[d])
+		s = malloc((k + 1) * sizeof(char));
+		if (!s)
 		{
-			for (k = 0; k < d; k++)
+			for (k = 0; k < 1; k++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[d][m] = str[a++];
-		s[d][m] = 0;
+			s[m] = str[a++];
+		s[m] = 0;
 	}
-	s[d] = NULL;
+	s = NULL;
 	return (s);
 }

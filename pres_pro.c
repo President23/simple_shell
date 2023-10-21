@@ -58,16 +58,16 @@ int _atoi(char *str)
 	int a, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (a = 0;  str[a] != '\0' && flag != 2; a++)
 	{
-		if (s[i] == '-')
+		if (str[a] == '-')
 			sign *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (str[a] >= '0' && str[a] <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (s[i] - '0');
+			result += (str[a] - '0');
 		}
 		else if (flag == 1)
 			flag = 2;

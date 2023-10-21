@@ -22,7 +22,7 @@ char **get_environ(true_t *check)
  * @var: str in
  *  Return: change
  */
-int _unsetenv(check_t *check, char *var)
+int _unsetenv(true_t *check, char *var)
 {
 	list_t *node = check->env;
 	size_t a = 0;

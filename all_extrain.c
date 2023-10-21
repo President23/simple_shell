@@ -25,7 +25,7 @@ char *_getenv(true_t *check, const char *shit)
 
 	while (node)
 	{
-		p = starts_with(node->str, name);
+		p = starts_with(node->str, shit);
 		if (p && *p)
 			return (p);
 		node = node->next;
@@ -39,7 +39,7 @@ char *_getenv(true_t *check, const char *shit)
  * @check: Structr
  *  Return: ain
  */
-int _mysetenv(check_t *check)
+int _mysetenv(true_t *check)
 {
 	if (check->argc != 3)
 	{
@@ -65,7 +65,7 @@ int _myunsetenv(true_t *check)
 		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= info->argc; i++)
+	for (i = 1; i <= check->argc; i++)
 		_unsetenv(check, check->argv[i]);
 
 	return (0);

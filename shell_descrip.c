@@ -22,7 +22,7 @@ int hsh(true_t *check, char **av)
 		if (s != -1)
 		{
 			set_info(check, av);
-			builtin_ret = find_builtin(info);
+			builtin_ret = find_builtin(check);
 			if (builtin_ret == -1)
 				find_cmd(check);
 		}
@@ -92,7 +92,7 @@ void find_cmd(true_t *check)
 		check->linecount_flag = 0;
 	}
 	for (a = 0, k = 0; check->arg[a]; a++)
-		if (!is_delim(info->arg[a], " \t\n"))
+		if (!is_delim(check->arg[a], " \t\n"))
 			k++;
 	if (!k)
 		return;

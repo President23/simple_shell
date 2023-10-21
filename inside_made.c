@@ -22,7 +22,7 @@ int _myexit(true_t *check)
 			_eputchar('\n');
 			return (1);
 		}
-		check->err_num = _erratoi(info->argv[1]);
+		check->err_num = _erratoi(check->argv[1]);
 		return (-2);
 	}
 	check->err_num = -1;
@@ -61,7 +61,7 @@ int _mycd(true_t *check)
 		}
 		_puts(_getenv(check, "OLDPWD=")), _putchar('\n');
 		chng = /* TODO: what should this be? */
-			chdir((dr = _getenv(info, "OLDPWD=")) ? dr : "/");
+			chdir((dr = _getenv(check, "OLDPWD=")) ? dr : "/");
 	}
 	else
 		chng = chdir(check->argv[1]);

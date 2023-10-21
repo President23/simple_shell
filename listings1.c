@@ -41,7 +41,7 @@ char **list_to_strings(list_t *head)
 		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
-			for (d = 0; j < a; d++)
+			for (d = 0; d < a; d++)
 				free(strs[d]);
 			free(strs);
 			return (NULL);

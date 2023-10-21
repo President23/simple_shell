@@ -19,11 +19,11 @@ ssize_t input_buf(true_t *check, char **buf, size_t *length)
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
+
 		s = getline(buf, &len_p, stdin);
-#else
+
 		s = _getline(check, buf, &len_p);
-#endif
+
 		if (s > 0)
 		{
 			if ((*buf)[s - 1] == '\n')
@@ -78,7 +78,6 @@ ssize_t get_input(true_t *check)
 		if (a >= length) /* reached end of buffer? */
 		{
 			a = length = 0; /* reset position and length */
-			check->cmd_buf_type = CMD_NORM;
 		}
 
 		*buf_p = q; /* pass back pointer to current command position */

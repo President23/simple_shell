@@ -52,7 +52,7 @@ int _putfd(char c, int hd)
 	static int a;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
 	{
 		write(hd, buf, a);
 		a = 0;

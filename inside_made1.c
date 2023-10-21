@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * _myhistory - disp histrys
- * @check: ins
+ * _myhistory - displays
+ * @check: Stru
  *  Return: Always 0
  */
 int _myhistory(true_t *check)
@@ -12,54 +12,54 @@ int _myhistory(true_t *check)
 }
 
 /**
- * unset_alias - str ali set
- * @check: in p
- * @str: the in str
+ * unset_alias - sets alias to string
+ * @check: parameter struct
+ * @str: the string alias
  *
- * Return: change
+ * Return: Always 0 on success, 1 on error
  */
 int unset_alias(true_t *check, char *str)
 {
-	char *x, y;
-	int rm;
+	char *p, c;
+	int ret;
 
-	x = _strchr(str, '=');
-	if (!x)
+	p = _strchr(str, '=');
+	if (!p)
 		return (1);
-	y = *x;
-	*x = 0;
-	rm = delete_node_at_index(&(check->alias),
+	c = *p;
+	*p = 0;
+	ret = delete_node_at_index(&(check->alias),
 		get_node_index(check->alias, node_starts_with(check->alias, str, -1)));
-	*x = y;
-	return (rm);
+	*p = c;
+	return (ret);
 }
 
 /**
- * set_alias - sets alia
- * @check: in
- * @str: the str in
+ * set_alias - sets alias to string
+ * @check: parameter struct
+ * @str: the string alias
  *
- * Return: change
+ * Return: Always 0 on success, 1 on error
  */
 int set_alias(true_t *check, char *str)
 {
-	char *x;
+	char *p;
 
-	x = _strchr(str, '=');
-	if (!x)
+	p = _strchr(str, '=');
+	if (!p)
 		return (1);
-	if (!*++x)
-		return (alia_display(check, str));
+	if (!*++p)
+		return (0);
 
-	alia_display(check, str);
+	unset_alias(check, str);
 	return (add_node_end(&(check->alias), str, 0) == NULL);
 }
 
 /**
- * print_alias - gaga
+ * print_alias - prints an alias string
  * @node: the alias node
  *
- * Return: change
+ * Return: Always 0 on success, 1 on error
  */
 int print_alias(list_t *node)
 {
@@ -79,8 +79,9 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - built in
- * @check: Strucr
+ * _myalias - mimics the alias builtin (man alias)
+ * @check: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
  *  Return: Always 0
  */
 int _myalias(true_t *check)
@@ -94,7 +95,7 @@ int _myalias(true_t *check)
 		node = check->alias;
 		while (node)
 		{
-			inside_alias(node);
+			print_alias(node);
 			node = node->next;
 		}
 		return (0);
@@ -103,9 +104,9 @@ int _myalias(true_t *check)
 	{
 		p = _strchr(check->argv[i], '=');
 		if (p)
-			alia_display(check, check->argv[i]);
+			set_alias(check, check->argv[i]);
 		else
-			alias_print(node_starts_with(check->alias, check->argv[i], '='));
+			print_alias(node_starts_with(check->alias, check->argv[i], '='));
 	}
 
 	return (0);
