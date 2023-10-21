@@ -2,19 +2,19 @@
 
 /**
  * _myexit - exits the shell
- * @check: in
- *
- *  Return: exits
- *
+ * @check: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: exits with a given exit status
+ *         (0) if info.argv[0] != "exit"
  */
 int _myexit(true_t *check)
 {
-	int ex;
+	int exitcheck;
 
 	if (check->argv[1])  /* If there is an exit arguement */
 	{
-		ex = _erratoi(check->argv[1]);
-		if (ex == -1)
+		exitcheck = _erratoi(check->argv[1]);
+		if (exitcheck == -1)
 		{
 			check->status = 2;
 			print_error(check, "Illegal number: ");
@@ -30,42 +30,43 @@ int _myexit(true_t *check)
 }
 
 /**
- * _mycd - change dr
- * @check: Strtr
+ * _mycd - changes the current directory of the process
+ * @check: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
  *  Return: Always 0
  */
 int _mycd(true_t *check)
 {
-	char *a, *dr, buffer[1024];
-	int chng;
+	char *s, *dir, buffer[1024];
+	int chdir_ret;
 
-	a = getcwd(buffer, 1024);
-	if (!a)
+	s = getcwd(buffer, 1024);
+	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!check->argv[1])
 	{
-		dr = _getenv(check, "HOME=");
-		if (!dr)
-			chng = /* TODO: what should this be? */
-				chdir((dr = _getenv(check, "PWD=")) ? dr : "/");
+		dir = _getenv(check, "HOME=");
+		if (!dir)
+			chdir_ret = /* TODO: what should this be? */
+				chdir((dir = _getenv(check, "PWD=")) ? dir : "/");
 		else
-			chng = chdir(dr);
+			chdir_ret = chdir(dir);
 	}
 	else if (_strcmp(check->argv[1], "-") == 0)
 	{
 		if (!_getenv(check, "OLDPWD="))
 		{
-			_puts(a);
+			_puts(s);
 			_putchar('\n');
 			return (1);
 		}
 		_puts(_getenv(check, "OLDPWD=")), _putchar('\n');
-		chng = /* TODO: what should this be? */
-			chdir((dr = _getenv(check, "OLDPWD=")) ? dr : "/");
+		chdir_ret = /* TODO: what should this be? */
+			chdir((dir = _getenv(check, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		chng = chdir(check->argv[1]);
-	if (chng == -1)
+		chdir_ret = chdir(check->argv[1]);
+	if (chdir_ret == -1)
 	{
 		print_error(check, "can't cd to ");
 		_eputs(check->argv[1]), _eputchar('\n');
@@ -80,7 +81,8 @@ int _mycd(true_t *check)
 
 /**
  * _myhelp - changes the current directory of the process
- * @check: Structr
+ * @check: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
  *  Return: Always 0
  */
 int _myhelp(true_t *check)
@@ -88,7 +90,7 @@ int _myhelp(true_t *check)
 	char **arg_array;
 
 	arg_array = check->argv;
-_puts("help call works. Function not yet implemented \n");
+	_puts("help call works. Function not yet implemented \n");
 	if (0)
 		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);
