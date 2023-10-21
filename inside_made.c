@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * shell_exit - exits the shell
+ * _myexit - exits the shell
  * @check: in
  *
  *  Return: exits
  *
  */
-int shell_exit(true_t *check)
+int _myexit(true_t *check)
 {
 	int ex;
 
@@ -30,11 +30,11 @@ int shell_exit(true_t *check)
 }
 
 /**
- * change_dr - change dr
+ * _mycd - change dr
  * @check: Strtr
  *  Return: Always 0
  */
-int change_dr(true_t *check)
+int _mycd(true_t *check)
 {
 	char *a, *dr, buffer[1024];
 	int chng;
@@ -79,16 +79,16 @@ int change_dr(true_t *check)
 }
 
 /**
- * get_help - changes the current directory of the process
+ * _myhelp - changes the current directory of the process
  * @check: Structr
  *  Return: Always 0
  */
-int get_help(true_t *check)
+int _myhelp(true_t *check)
 {
 	char **arg_array;
 
 	arg_array = check->argv;
-	_puts("help call works. Function not yet implemented \n");
+_puts("help call works. Function not yet implemented \n");
 	if (0)
 		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);

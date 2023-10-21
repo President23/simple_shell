@@ -1,24 +1,24 @@
 #include "shell.h"
 
 /**
- * disp_histry - disp histrys
+ * _myhistory - disp histrys
  * @check: ins
  *  Return: Always 0
  */
-int disp_histry(true_t *check)
+int _myhistory(true_t *check)
 {
 	print_list(check->history);
 	return (0);
 }
 
 /**
- * alia_display - str ali set
+ * unset_alias - str ali set
  * @check: in p
  * @str: the in str
  *
  * Return: change
  */
-int alia_display(true_t *check, char *str)
+int unset_alias(true_t *check, char *str)
 {
 	char *x, y;
 	int rm;
@@ -35,13 +35,13 @@ int alia_display(true_t *check, char *str)
 }
 
 /**
- * alia_set - sets alia
+ * set_alias - sets alia
  * @check: in
  * @str: the str in
  *
  * Return: change
  */
-int alia_set(true_t *check, char *str)
+int set_alias(true_t *check, char *str)
 {
 	char *x;
 
@@ -56,12 +56,12 @@ int alia_set(true_t *check, char *str)
 }
 
 /**
- * alias_print - gaga
+ * print_alias - gaga
  * @node: the alias node
  *
  * Return: change
  */
-int alias_print(list_t *node)
+int print_alias(list_t *node)
 {
 	char *p = NULL, *a = NULL;
 
@@ -79,11 +79,11 @@ int alias_print(list_t *node)
 }
 
 /**
- * inside_alias - built in
+ * _myalias - built in
  * @check: Strucr
  *  Return: Always 0
  */
-int inside_alias(true_t *check)
+int _myalias(true_t *check)
 {
 	int i = 0;
 	char *p = NULL;

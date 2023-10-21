@@ -1,15 +1,13 @@
 #include "shell.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
- * true_shell - give mode
+ * interactive - give mode
  * @shell: inside
  *
  * Return: change
  */
 
-int true_shell(true_t *shell)
+int interactive(true_t *shell)
 {
 	if (isatty(STDIN_FILENO) && shell->readfd <= 2)
 	{
@@ -22,12 +20,12 @@ int true_shell(true_t *shell)
 }
 
 /**
- * char_check - checks char
+ * is_delim - checks char
  * @a: the char to check
  * @check: to be checked
  * Return: change
  */
-int char_check(char a, char *check)
+int is_delim(char a, char *check)
 {
 	while (*check)
 		if (*check++ == a)
@@ -36,12 +34,12 @@ int char_check(char a, char *check)
 }
 
 /**
- * alpha_check - checks for alphabetic
+ * _isalpha - checks for alphabetic
  *@c: The character to input
  *Return: change
  */
 
-int alpha_check(int c)
+int _isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
@@ -50,35 +48,35 @@ int alpha_check(int c)
 }
 
 /**
- * pres_pro - converts str
+ * _atoi - converts str
  *@str: the string to be converted
  *Return: 0 if no
  */
 
-int pres_pro(char *str)
+int _atoi(char *str)
 {
-	int a, inp = 1, glad = 0, outp;
-	unsigned int give = 0;
+	int a, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-	for (a = 0;  str[a] != '\0' && glad != 2; a++)
+	for (i = 0;  s[i] != '\0' && flag != 2; i++)
 	{
-		if (str[a] == '-')
-			inp *= -1;
+		if (s[i] == '-')
+			sign *= -1;
 
-		if (str[a] >= '0' && str[a] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			glad = 1;
-			give *= 10;
-			give += (str[a] - '0');
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
 		}
-		else if (glad == 1)
-			glad = 2;
+		else if (flag == 1)
+			flag = 2;
 	}
 
-	if (inp == -1)
-		outp = -give;
+	if (sign == -1)
+		output = -result;
 	else
-		outp = give;
+		output = result;
 
-	return (outp);
+	return (output);
 }
